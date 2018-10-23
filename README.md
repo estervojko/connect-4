@@ -23,3 +23,14 @@ MVP
 
 Post-MVP
 -Implementing a drag and drop feature for the discs, and an animation when they fall down the grid.
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+As a data structure I plan on using an array of arrays for the grid, each sub-array being a row.
+
+Some functions that will be implemented are:
+
+-makeMove()
+-switchTurns()
+-checkForWin
