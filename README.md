@@ -34,3 +34,33 @@ Some functions that will be implemented are:
 -makeMove()
 -switchTurns()
 -checkForWin
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Used for test cases:
+
+//checkHorizontally
+board[5][3] = "red";
+board[4][3] = "red";
+board[3][3] = "red";
+board[2][3] = "red";
+
+//checkFirstDiagonal
+
+board[5][1] = "blue";
+board[4][2] = "blue";
+board[3][3] = "blue";
+board[2][4] = "blue";
+
+Answers for the first Diagonal:
+>checkFirstDiagonal(4,2)
+(3) [true, 2, 4]
+>checkFirstDiagonal(5,1)
+(3) [true, 2, 4]
+>checkFirstDiagonal(4,2)
+(3) [true, 2, 4]
+>checkFirstDiagonal(3,3)
+(3) [true, 2, 4]
+>checkFirstDiagonal(2,4)
+(3) [true, 2, 4]
