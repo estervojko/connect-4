@@ -10,7 +10,7 @@ for(let i=0; i<7; i+=1){
   column[i].addEventListener("click", () => {
     let colData = column[i].dataset.column;
     let cells = column[i].children;               //selects all children of clicked column
-    column[i].lastElementChild.style.backgroundColor === "red";
+    column[i].lastElementChild.style.backgroundColor = "red";
     console.log(column[i].lastElementChild.style.backgroundColor);
     if(column[i].lastElementChild.style.backgroundColor == null){
       column[i].lastElementChild.style.backgroundColor === "red";
