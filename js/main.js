@@ -10,21 +10,50 @@ for(let i=0; i<7; i+=1){
   column[i].addEventListener("click", () => {
     let colData = column[i].dataset.column;
     let cells = column[i].children;               //selects all children of clicked column
-    column[i].lastElementChild.style.backgroundColor = "red";
-    console.log(column[i].lastElementChild.style.backgroundColor);
-    if(column[i].lastElementChild.style.backgroundColor == null){
-      column[i].lastElementChild.style.backgroundColor === "red";
-    }
-    for(let i=0; i<cells.length; i += 1){
-      if( cells[i].style.backgroundColor === "red" || cells[i].style.backgroundColor === "blue"){
-        cells[i-1].style.backgroundColor = "blue";
+    console.log(turn);
+    if(turn === "red"){
+      if( column[i].lastElementChild.style.backgroundColor === ""){
+        column[i].lastElementChild.style.backgroundColor = "red";
+        makeMove(Number(colData));
+      }
+      else{
+        for(let i=0; i<cells.length; i += 1){
+          if( cells[i].style.backgroundColor === "red" || cells[i].style.backgroundColor === "blue"){
+            cells[i-1].style.backgroundColor = "red";
+            makeMove(Number(colData));
+            return;
+          }
+        }
       }
     }
-    makeMove(Number(colData));
-    });
+    else if(turn === "blue"){
+      if( column[i].lastElementChild.style.backgroundColor === ""){
+        column[i].lastElementChild.style.backgroundColor = "blue";
+        makeMove(Number(colData));
+      }
+      else{
+        for(let i=0; i<cells.length; i += 1){
+          if( cells[i].style.backgroundColor === "red" || cells[i].style.backgroundColor === "blue"){
+            cells[i-1].style.backgroundColor = "blue";
+            makeMove(Number(colData));
+            return;
+          }
+        }
+      }
+    }
+  });
 }
 
+//display
 
+function displayWin(row, column){
+  for(let i=0; i<4; i+=1){
+    let colDiv = document.querySelector(".container").children[column];
+    let cellDiv = colDiv.children[row];
+     column -= 1;
+    cellDiv.style.backgroundColor = "purple";
+  }
+}
 
 //-----------------------------------------------------------------------------
 //Logical part
@@ -117,7 +146,7 @@ function placeDisk(column, turn){
   let row = board.length-1;
   if( board[row][column] === null){
     board[row][column] = turn;
-    checkWinner(row,column);
+    // checkWinner(row,column);
   }
   else{
     for(let i=0; i<board.length; i+=1){
@@ -167,7 +196,7 @@ function checkHorizontally(row, column){
         board[row][column] === board[row][column-1] &&
         board[row][column-1] === board[row][column-2] &&
         board[row][column-2] === board[row][column-3]) {
-          return [true, column];
+          return [true, column, row];
         }
       column += 1;
       console.log(row, column, column-1, column-2, column-3);
@@ -186,7 +215,7 @@ function checkVertically(row, column){
         board[row][column] === board[row-1][column] &&
         board[row-1][column] === board[row-2][column] &&
         board[row-2][column] === board[row-3][column]) {
-          return [true, column];
+          return [true, column, row];
         }
       row += 1;
       console.log(row-3, row-2, row-1,row, column);
