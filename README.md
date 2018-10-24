@@ -1,4 +1,17 @@
+Plan for the day - October 24 2018
 
+Where Im at:
+- almost finished the logic of the game, and it works correctly with the tests I run.
+- Functions such as makeMove, switchTurns and checkWinner, are fully implemented and work correctly.
+- Started to do the layout
+
+To do:
+
+- I plan to get most of the viewing functionality going.
+- By the end of today, bith players can click on the board and their respective disks will show up at the board at the
+correct place.
+
+-----------------------------------------------------------------------------------------------------------------------
 Connect 4
 
 Basic description.

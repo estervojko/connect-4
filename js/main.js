@@ -9,7 +9,17 @@ console.log(column);
 for(let i=0; i<7; i+=1){
   column[i].addEventListener("click", () => {
     let colData = column[i].dataset.column;
-    console.log(Number(colData));
+    let cells = column[i].children;               //selects all children of clicked column
+    column[i].lastElementChild.style.backgroundColor === "red";
+    console.log(column[i].lastElementChild.style.backgroundColor);
+    if(column[i].lastElementChild.style.backgroundColor == null){
+      column[i].lastElementChild.style.backgroundColor === "red";
+    }
+    for(let i=0; i<cells.length; i += 1){
+      if( cells[i].style.backgroundColor === "red" || cells[i].style.backgroundColor === "blue"){
+        cells[i-1].style.backgroundColor = "blue";
+      }
+    }
     makeMove(Number(colData));
     });
 }
@@ -148,16 +158,6 @@ function checkWinner(row, column){
   }
 }
 
-//checks if coordinates surrounding (row, column) are inside the board
-// function isInBoard(row, column){
-//   if( row-3 >= 0 && row+3 <=5 && column-3 >= 0 && column+3 <= 6){
-//     return true;
-//   }
-//   else{
-//     return false;
-//   }
-// }
-
 //checks horizontally left and right
 //if it doesnt work implement cases when its null
 function checkHorizontally(row, column){
@@ -176,27 +176,7 @@ function checkHorizontally(row, column){
   }else{
     return [false];
   }
-
-   // You dont need this
-  // //check left
-  // else if( column-3 >= 0 &&
-  //   board[row][column] === board[row][column-1] &&
-  //   board[row][column-1] === board[row][column-2] &&
-  //   board[row][column-2] === board[row][column-3]) {
-  //     return [true, "left"];
-  //   }
-  // else if( column+3 <= 6 &&
-  //   board[row][column] === board[row][column+1] &&
-  //   board[row][column+1] === board[row][column+2] &&
-  //   board[row][column+2] === board[row][column+3])
-  // {
-  //   return [true, "right"];
-  // }
-  // else{
-  //   return [false];
-  // }
 }
-
 
 //checks vertically
 function checkVertically(row, column){
@@ -215,24 +195,6 @@ function checkVertically(row, column){
   }else{
     return [false];
   }
-  // //check up
-  // if( row-3 >= 0 &&
-  //   board[row][column] === board[row-1][column] &&
-  //   board[row-1][column] === board[row-2][column] &&
-  //   board[row-2][column] === board[row-3][column]) {
-  //     return [true, "up"];
-  //   }
-  //   //check down
-  // else if( row+3 <= 5 &&
-  //   board[row][column] === board[row+1][column] &&
-  //   board[row+1][column] === board[row+2][column] &&
-  //   board[row+2][column] === board[row+3][column])
-  // {
-  //   return [true, "down"];
-  // }
-  // else{
-  //   return [false];
-  // }
 }
 
 //checks first diagonal
@@ -252,24 +214,6 @@ function checkFirstDiagonal(row, column){
   }else{
     return[false];
   }
-
-  // //check up
-  // else if( row-3 >= 0 && column+3 <= 6 &&
-  //   board[row][column] === board[row-1][column+1] &&
-  //   board[row-1][column+1] === board[row-2][column+2] &&
-  //   board[row-2][column+2] === board[row-3][column+3]) {
-  //     return [true, "up"];
-  //   }
-  // else if( row+3 <= 5 && column-3 >= 0 &&
-  //   board[row][column] === board[row+1][column-1] &&
-  //   board[row+1][column-1] === board[row+2][column-2] &&
-  //   board[row+2][column-2] === board[row+3][column-3])
-  // {
-  //   return [true, "down"];
-  // }
-  // else{
-  //   return [false];
-  // }
 }
 
 //checks second diagonal
@@ -290,21 +234,4 @@ function checkSecondDiagonal(row, column){
   }else{
     return [false];
   }
-  //check up
-  // else if( row-3 >= 0 && column-3 >= 0 &&
-  //   board[row][column] === board[row-1][column-1] &&
-  //   board[row-1][column-1] === board[row-2][column-2] &&
-  //   board[row-2][column-2] === board[row-3][column-3]) {
-  //     return [true, "up"];
-  //   }
-  // else if( row+3 <= 5 && column+3 <= 6 &&
-  //   board[row][column] === board[row+1][column+1] &&
-  //   board[row+1][column+1] === board[row+2][column+2] &&
-  //   board[row+2][column+2] === board[row+3][column+3])
-  // {
-  //   return [true, "down"];
-  // }
-  // else{
-  //   return [false];
-  // }
 }
