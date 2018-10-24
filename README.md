@@ -64,3 +64,10 @@ Answers for the first Diagonal:
 (3) [true, 2, 4]
 >checkFirstDiagonal(2,4)
 (3) [true, 2, 4]
+
+//checkSecondDiagonal
+
+board[2][1] = "red"
+board[3][2] = "red"
+board[4][3] = "red"
+board[5][4] = "red"

@@ -1,6 +1,23 @@
 console.log("connected");
 
+//-----------------------------------------------------------------------------
+//View
 
+const column = document.querySelectorAll(".column");
+console.log(column);
+
+for(let i=0; i<7; i+=1){
+  column[i].addEventListener("click", () => {
+    let colData = column[i].dataset.column;
+    console.log(Number(colData));
+    makeMove(Number(colData));
+    });
+}
+
+
+
+//-----------------------------------------------------------------------------
+//Logical part
 
 //Initialized the board with null values
 function buildBoard(){
@@ -111,15 +128,19 @@ function checkWinner(row, column){
   let checkSecondD = checkSecondDiagonal(row, column);
 
   if( checkH[0] === true){
+    console.log(checkH);
     return checkH;
   }
   else if( checkV[0] === true){
+    console.log(checkV);
     return checkV;
   }
   else if( checkFirstD[0] === true){
+    console.log(checkFirstD);
     return checkFirstD;
   }
   else if( checkSecondD[0] === true){
+    console.log(checkSecondD);
     return checkSecondD;
   }
   else{
@@ -151,6 +172,9 @@ function checkHorizontally(row, column){
       column += 1;
       console.log(row, column, column-1, column-2, column-3);
     }
+    return [false];
+  }else{
+    return [false];
   }
 
    // You dont need this
@@ -178,7 +202,7 @@ function checkHorizontally(row, column){
 function checkVertically(row, column){
   if( board[row][column] !== null){
     for(let i=0; i<4; i+=1){
-      if( row-3 >= 0 &&
+      if( row-3 >= 0 && row <=5 &&
         board[row][column] === board[row-1][column] &&
         board[row-1][column] === board[row-2][column] &&
         board[row-2][column] === board[row-3][column]) {
@@ -187,6 +211,9 @@ function checkVertically(row, column){
       row += 1;
       console.log(row-3, row-2, row-1,row, column);
     }
+    return [false];
+  }else{
+    return [false];
   }
   // //check up
   // if( row-3 >= 0 &&
@@ -212,7 +239,7 @@ function checkVertically(row, column){
 function checkFirstDiagonal(row, column){
   if(board[row][column] !== null){
     for(let i=0; i<4; i+=1){
-      if( row+3 <= 5 && column-3 >= 0 &&
+      if( row+3 <= 5 && column-3 >= 0 && row >= 0 && column >= 0 &&
         board[row][column] === board[row+1][column-1] &&
         board[row+1][column-1] === board[row+2][column-2] &&
         board[row+2][column-2] === board[row+3][column-3]){
@@ -221,6 +248,9 @@ function checkFirstDiagonal(row, column){
       row -= 1;
       column += 1;
     }
+    return [false];
+  }else{
+    return[false];
   }
 
   // //check up
@@ -244,24 +274,37 @@ function checkFirstDiagonal(row, column){
 
 //checks second diagonal
 function checkSecondDiagonal(row, column){
-  if(board[row][column] === null){
+  if(board[row][column] !== null){
+    for(let i=0; i<4; i+=1){
+      if( row+3 <= 5 && column+3 <= 6 &&row >= 0 && column >= 0 &&
+        board[row][column] === board[row+1][column+1] &&
+        board[row+1][column+1] === board[row+2][column+2] &&
+        board[row+2][column+2] === board[row+3][column+3])
+      {
+        return [true, row, column];
+      }
+      row -= 1;
+      column -= 1;
+    }
+    return [false];
+  }else{
     return [false];
   }
   //check up
-  else if( row-3 >= 0 && column-3 >= 0 &&
-    board[row][column] === board[row-1][column-1] &&
-    board[row-1][column-1] === board[row-2][column-2] &&
-    board[row-2][column-2] === board[row-3][column-3]) {
-      return [true, "up"];
-    }
-  else if( row+3 <= 5 && column+3 <= 6 &&
-    board[row][column] === board[row+1][column+1] &&
-    board[row+1][column+1] === board[row+2][column+2] &&
-    board[row+2][column+2] === board[row+3][column+3])
-  {
-    return [true, "down"];
-  }
-  else{
-    return [false];
-  }
+  // else if( row-3 >= 0 && column-3 >= 0 &&
+  //   board[row][column] === board[row-1][column-1] &&
+  //   board[row-1][column-1] === board[row-2][column-2] &&
+  //   board[row-2][column-2] === board[row-3][column-3]) {
+  //     return [true, "up"];
+  //   }
+  // else if( row+3 <= 5 && column+3 <= 6 &&
+  //   board[row][column] === board[row+1][column+1] &&
+  //   board[row+1][column+1] === board[row+2][column+2] &&
+  //   board[row+2][column+2] === board[row+3][column+3])
+  // {
+  //   return [true, "down"];
+  // }
+  // else{
+  //   return [false];
+  // }
 }
