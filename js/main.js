@@ -15,12 +15,14 @@ for(let i=0; i<7; i+=1){
       if( column[i].lastElementChild.style.backgroundColor === ""){
         column[i].lastElementChild.style.backgroundColor = "red";
         makeMove(Number(colData));
+        checkWinState();
       }
       else{
         for(let i=0; i<cells.length; i += 1){
           if( cells[i].style.backgroundColor === "red" || cells[i].style.backgroundColor === "blue"){
             cells[i-1].style.backgroundColor = "red";
             makeMove(Number(colData));
+            checkWinState();
             return;
           }
         }
@@ -30,12 +32,14 @@ for(let i=0; i<7; i+=1){
       if( column[i].lastElementChild.style.backgroundColor === ""){
         column[i].lastElementChild.style.backgroundColor = "blue";
         makeMove(Number(colData));
+        checkWinState();
       }
       else{
         for(let i=0; i<cells.length; i += 1){
           if( cells[i].style.backgroundColor === "red" || cells[i].style.backgroundColor === "blue"){
             cells[i-1].style.backgroundColor = "blue";
             makeMove(Number(colData));
+            checkWinState();
             return;
           }
         }
@@ -44,14 +48,49 @@ for(let i=0; i<7; i+=1){
   });
 }
 
-//display
+//checks the winner array if someone won
+function checkWinState(){
+  if(winner[0] === true){
+    displayWin(winner[2],winner[3]);
+  }
+}
 
+
+//display
 function displayWin(row, column){
-  for(let i=0; i<4; i+=1){
-    let colDiv = document.querySelector(".container").children[column];
-    let cellDiv = colDiv.children[row];
-     column -= 1;
-    cellDiv.style.backgroundColor = "purple";
+  if(winner[1] === "h"){
+    for(let i=0; i<4; i+=1){
+      let colDiv = document.querySelector(".container").children[column];
+      let cellDiv = colDiv.children[row];
+       column -= 1;
+      cellDiv.style.backgroundColor = "purple";
+    }
+  }
+  else if(winner[1] === "v"){
+    for(let i=0; i<4; i+=1){
+      let colDiv = document.querySelector(".container").children[column];
+      let cellDiv = colDiv.children[row];
+       row -= 1;
+      cellDiv.style.backgroundColor = "purple";
+    }
+  }
+  else if(winner[1] === "fd"){
+    for(let i=0; i<4; i+=1){
+      let colDiv = document.querySelector(".container").children[column];
+      let cellDiv = colDiv.children[row];
+       column -= 1;
+       row += 1;
+      cellDiv.style.backgroundColor = "purple";
+    }
+  }
+  else if(winner[1] === "sd"){
+    for(let i=0; i<4; i+=1){
+      let colDiv = document.querySelector(".container").children[column];
+      let cellDiv = colDiv.children[row];
+       column += 1;
+       row += 1;
+      cellDiv.style.backgroundColor = "purple";
+    }
   }
 }
 
@@ -77,6 +116,9 @@ const board = buildBoard();
 //initialize the turn
 let turn = 'blue';
 
+//store information about a winning state
+let winner = [];
+
 //Switches turns between Players
 function switchTurns(color){
   if(color === 'blue'){
@@ -87,66 +129,81 @@ function switchTurns(color){
   }
 }
 
+//
+
+  function makeMove(column){
+   if(turn === 'blue'){
+     placeDisk(column, 'blue');
+     switchTurns('blue');
+   }
+   else if(turn === "red"){
+    placeDisk(column, 'red');
+    switchTurns('red');
+    }
+  }
+
+
 //makes a move. Takes a parameter that means which columns he's gonna put the disc
-function makeMove(column){
- if(turn === 'blue'){
-   switch(column){
-     case 0 : placeDisk(0, 'blue');
-              switchTurns('blue');
-              break;
-     case 1 : placeDisk(1, 'blue');
-              switchTurns('blue');
-              break;
-     case 2 : placeDisk(2, 'blue');
-              switchTurns('blue');
-              break;
-     case 3 : placeDisk(3, 'blue');
-              switchTurns('blue');
-              break;
-     case 4 : placeDisk(4, 'blue');
-              switchTurns('blue');
-              break;
-     case 5 : placeDisk(5, 'blue');
-              switchTurns('blue');
-              break;
-     case 6 : placeDisk(6, 'blue');
-              switchTurns('blue');
-              break;
-   }
- }
- else if(turn === "red"){
-   switch(column){
-     case 0 : placeDisk(0, 'red');
-              switchTurns('red');
-              break;
-     case 1 : placeDisk(1, 'red');
-              switchTurns('red');
-              break;
-     case 2 : placeDisk(2, 'red');
-              switchTurns('red');
-              break;
-     case 3 : placeDisk(3, 'red');
-              switchTurns('red');
-              break;
-     case 4 : placeDisk(4, 'red');
-              switchTurns('red');
-              break;
-     case 5 : placeDisk(5, 'red');
-              switchTurns('red');
-              break;
-     case 6 : placeDisk(6, 'red');
-              switchTurns('red');
-              break;
-   }
- }
-}
+// function makeMove(column){
+//  if(turn === 'blue'){
+//    switch(column){
+//      case 0 : placeDisk(0, 'blue');
+//               switchTurns('blue');
+//               break;
+//      case 1 : placeDisk(1, 'blue');
+//               switchTurns('blue');
+//               break;
+//      case 2 : placeDisk(2, 'blue');
+//               switchTurns('blue');
+//               break;
+//      case 3 : placeDisk(3, 'blue');
+//               switchTurns('blue');
+//               break;
+//      case 4 : placeDisk(4, 'blue');
+//               switchTurns('blue');
+//               break;
+//      case 5 : placeDisk(5, 'blue');
+//               switchTurns('blue');
+//               break;
+//      case 6 : placeDisk(6, 'blue');
+//               switchTurns('blue');
+//               break;
+//    }
+//  }
+//  else if(turn === "red"){
+//    switch(column){
+//      case 0 : placeDisk(0, 'red');
+//               switchTurns('red');
+//               break;
+//      case 1 : placeDisk(1, 'red');
+//               switchTurns('red');
+//               break;
+//      case 2 : placeDisk(2, 'red');
+//               switchTurns('red');
+//               break;
+//      case 3 : placeDisk(3, 'red');
+//               switchTurns('red');
+//               break;
+//      case 4 : placeDisk(4, 'red');
+//               switchTurns('red');
+//               break;
+//      case 5 : placeDisk(5, 'red');
+//               switchTurns('red');
+//               break;
+//      case 6 : placeDisk(6, 'red');
+//               switchTurns('red');
+//               break;
+//    }
+//  }
+// }
 
 //puts the value disk in the array
 function placeDisk(column, turn){
   let row = board.length-1;
   if( board[row][column] === null){
     board[row][column] = turn;
-    // checkWinner(row,column);
+    checkWinner(row,column);
+    return;
   }
   else{
     for(let i=0; i<board.length; i+=1){
@@ -168,19 +225,23 @@ function checkWinner(row, column){
 
   if( checkH[0] === true){
     console.log(checkH);
-    return checkH;
+    winner = checkH;
+    return;
   }
   else if( checkV[0] === true){
     console.log(checkV);
-    return checkV;
+    winner = checkV;
+    return;
   }
   else if( checkFirstD[0] === true){
     console.log(checkFirstD);
-    return checkFirstD;
+    winner = checkFirstD;
+    return;
   }
   else if( checkSecondD[0] === true){
     console.log(checkSecondD);
-    return checkSecondD;
+    winner = checkSecondD;
+    return;
   }
   else{
     return [false];
@@ -196,7 +257,7 @@ function checkHorizontally(row, column){
         board[row][column] === board[row][column-1] &&
         board[row][column-1] === board[row][column-2] &&
         board[row][column-2] === board[row][column-3]) {
-          return [true, column, row];
+          return [true, "h", row, column];
         }
       column += 1;
       console.log(row, column, column-1, column-2, column-3);
@@ -215,7 +276,7 @@ function checkVertically(row, column){
         board[row][column] === board[row-1][column] &&
         board[row-1][column] === board[row-2][column] &&
         board[row-2][column] === board[row-3][column]) {
-          return [true, column, row];
+          return [true, "v", row, column];
         }
       row += 1;
       console.log(row-3, row-2, row-1,row, column);
@@ -234,7 +295,7 @@ function checkFirstDiagonal(row, column){
         board[row][column] === board[row+1][column-1] &&
         board[row+1][column-1] === board[row+2][column-2] &&
         board[row+2][column-2] === board[row+3][column-3]){
-            return([true, row, column]);
+            return([true, "fd", row, column]);
     }
       row -= 1;
       column += 1;
@@ -254,7 +315,7 @@ function checkSecondDiagonal(row, column){
         board[row+1][column+1] === board[row+2][column+2] &&
         board[row+2][column+2] === board[row+3][column+3])
       {
-        return [true, row, column];
+        return [true, "sd", row, column];
       }
       row -= 1;
       column -= 1;
