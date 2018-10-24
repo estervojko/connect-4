@@ -129,8 +129,7 @@ function switchTurns(color){
   }
 }
 
-//
-
+//makes a move
   function makeMove(column){
    if(turn === 'blue'){
      placeDisk(column, 'blue');
@@ -141,61 +140,6 @@ function switchTurns(color){
     switchTurns('red');
     }
   }
-
-
-//makes a move. Takes a parameter that means which columns he's gonna put the disc
-// function makeMove(column){
-//  if(turn === 'blue'){
-//    switch(column){
-//      case 0 : placeDisk(0, 'blue');
-//               switchTurns('blue');
-//               break;
-//      case 1 : placeDisk(1, 'blue');
-//               switchTurns('blue');
-//               break;
-//      case 2 : placeDisk(2, 'blue');
-//               switchTurns('blue');
-//               break;
-//      case 3 : placeDisk(3, 'blue');
-//               switchTurns('blue');
-//               break;
-//      case 4 : placeDisk(4, 'blue');
-//               switchTurns('blue');
-//               break;
-//      case 5 : placeDisk(5, 'blue');
-//               switchTurns('blue');
-//               break;
-//      case 6 : placeDisk(6, 'blue');
-//               switchTurns('blue');
-//               break;
-//    }
-//  }
-//  else if(turn === "red"){
-//    switch(column){
-//      case 0 : placeDisk(0, 'red');
-//               switchTurns('red');
-//               break;
-//      case 1 : placeDisk(1, 'red');
-//               switchTurns('red');
-//               break;
-//      case 2 : placeDisk(2, 'red');
-//               switchTurns('red');
-//               break;
-//      case 3 : placeDisk(3, 'red');
-//               switchTurns('red');
-//               break;
-//      case 4 : placeDisk(4, 'red');
-//               switchTurns('red');
-//               break;
-//      case 5 : placeDisk(5, 'red');
-//               switchTurns('red');
-//               break;
-//      case 6 : placeDisk(6, 'red');
-//               switchTurns('red');
-//               break;
-//    }
-//  }
-// }
 
 //puts the value disk in the array
 function placeDisk(column, turn){
