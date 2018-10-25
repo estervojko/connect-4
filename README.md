@@ -1,3 +1,14 @@
+Plan for the day - October 25 2018
+
+Where Im at:
+- functionality fully implemented with UI
+
+To do:
+- enhance user interface so that when you click to make a move, the disk slides into the correct position
+- enhance and organize the general layout and design of the game.
+
+
+
 Plan for the day - October 24 2018
 
 Where Im at:
