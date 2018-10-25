@@ -4,7 +4,7 @@ console.log("connected");
 //View
 
 const column = document.querySelectorAll(".column");
-console.log(column);
+
 
 for(let i=0; i<7; i+=1){
   column[i].addEventListener("click", function handler(){
@@ -107,6 +107,25 @@ function displayWin(row, column){
   }
 }
 
+//resets the game to initial state
+function resetGame(){
+  board = buildBoard();
+  turn = 'blue';
+  winner = [];
+  resetView();
+}
+
+//resets the view to initial state
+function resetView(){
+  let cells = document.querySelectorAll(".cell");
+  console.log(cells.children);
+  cells.forEach((cell) => {
+    cell.style.backgroundColor = "";
+    cell.classList.remove("animated");
+  });
+}
+
+
 //-----------------------------------------------------------------------------
 //Logical part
 
@@ -124,7 +143,7 @@ function buildBoard(){
 }
 
 //initialize the board
-const board = buildBoard();
+let board = buildBoard();
 
 //initialize the turn
 let turn = 'blue';
