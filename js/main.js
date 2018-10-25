@@ -7,16 +7,25 @@ const column = document.querySelectorAll(".column");
 console.log(column);
 
 for(let i=0; i<7; i+=1){
-  column[i].addEventListener("click", () => {
+  column[i].addEventListener("click", function handler(){
     let colData = column[i].dataset.column;
     let cells = column[i].children;               //selects all children of clicked column
     console.log(turn);
+
+    //Remove event listener if game is finished
+    if(winner[0] === true){
+      for(let i=0; i<7; i+=1){
+        column[i].removeEventListener("click", handler);
+        return;
+      }
+      console.log("removed");
+    }
     if(turn === "red"){
       if( column[i].lastElementChild.style.backgroundColor === ""){
         column[i].lastElementChild.style.backgroundColor = "red";
         makeMove(Number(colData));
         checkWinState();
-      }
+        }
       else{
         for(let i=0; i<cells.length; i += 1){
           if( cells[i].style.backgroundColor === "red" || cells[i].style.backgroundColor === "blue"){
@@ -33,7 +42,7 @@ for(let i=0; i<7; i+=1){
         column[i].lastElementChild.style.backgroundColor = "blue";
         makeMove(Number(colData));
         checkWinState();
-      }
+        }
       else{
         for(let i=0; i<cells.length; i += 1){
           if( cells[i].style.backgroundColor === "red" || cells[i].style.backgroundColor === "blue"){
@@ -64,6 +73,7 @@ function displayWin(row, column){
       let cellDiv = colDiv.children[row];
        column -= 1;
       cellDiv.style.backgroundColor = "purple";
+      cellDiv.classList.add("animated");
     }
   }
   else if(winner[1] === "v"){
@@ -72,6 +82,7 @@ function displayWin(row, column){
       let cellDiv = colDiv.children[row];
        row -= 1;
       cellDiv.style.backgroundColor = "purple";
+      cellDiv.classList.add("animated");
     }
   }
   else if(winner[1] === "fd"){
@@ -81,6 +92,7 @@ function displayWin(row, column){
        column -= 1;
        row += 1;
       cellDiv.style.backgroundColor = "purple";
+      cellDiv.classList.add("animated");
     }
   }
   else if(winner[1] === "sd"){
@@ -90,6 +102,7 @@ function displayWin(row, column){
        column += 1;
        row += 1;
       cellDiv.style.backgroundColor = "purple";
+      cellDiv.classList.add("animated");
     }
   }
 }
