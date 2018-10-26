@@ -5,6 +5,21 @@ console.log("connected");
 
 const column = document.querySelectorAll(".column");
 
+const cellA = document.querySelector(".cell");
+
+//testing grid animation
+function frame(){
+  let pos = 0;
+  if(pos === 200){
+    clearInterval(id);
+  }
+  else{
+    pos += 1;
+    cellA.style.top = `${pos}px`
+  }
+}
+
+let id = setInterval(frame, 5);
 
 for(let i=0; i<7; i+=1){
   column[i].addEventListener("click", function handler(){
