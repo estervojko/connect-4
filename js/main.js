@@ -21,14 +21,14 @@ for(let i=0; i<7; i+=1){
     }
     if(turn === "red"){
       if( column[i].lastElementChild.style.backgroundColor === ""){
-        column[i].lastElementChild.style.backgroundColor = "red";
+        column[i].lastElementChild.style.backgroundColor = "#EA9674";
         makeMove(Number(colData));
         checkWinState();
         }
       else{
         for(let i=0; i<cells.length; i += 1){
-          if( cells[i].style.backgroundColor === "red" || cells[i].style.backgroundColor === "blue"){
-            cells[i-1].style.backgroundColor = "red";
+          if( cells[i].style.backgroundColor !== ""){
+            cells[i-1].style.backgroundColor = "#EA9674";
             makeMove(Number(colData));
             checkWinState();
             return;
@@ -38,14 +38,16 @@ for(let i=0; i<7; i+=1){
     }
     else if(turn === "blue"){
       if( column[i].lastElementChild.style.backgroundColor === ""){
-        column[i].lastElementChild.style.backgroundColor = "blue";
+        column[i].lastElementChild.style.backgroundColor = "#526C86";
         makeMove(Number(colData));
         checkWinState();
         }
       else{
         for(let i=0; i<cells.length; i += 1){
-          if( cells[i].style.backgroundColor === "red" || cells[i].style.backgroundColor === "blue"){
-            cells[i-1].style.backgroundColor = "blue";
+          console.log("entered inside for of blue");
+          if( cells[i].style.backgroundColor !== ""){
+            console.log("entered inside if of blue");
+            cells[i-1].style.backgroundColor = "#526C86"
             makeMove(Number(colData));
             checkWinState();
             return;
@@ -71,7 +73,7 @@ function displayWin(row, column){
       let colDiv = document.querySelector(".container").children[column];
       let cellDiv = colDiv.children[row];
        column -= 1;
-      cellDiv.style.backgroundColor = "purple";
+      // cellDiv.style.backgroundColor = "purple";
       cellDiv.classList.add("animated");
     }
   }
@@ -80,7 +82,7 @@ function displayWin(row, column){
       let colDiv = document.querySelector(".container").children[column];
       let cellDiv = colDiv.children[row];
        row -= 1;
-      cellDiv.style.backgroundColor = "purple";
+      // cellDiv.style.backgroundColor = "purple";
       cellDiv.classList.add("animated");
     }
   }
@@ -90,7 +92,7 @@ function displayWin(row, column){
       let cellDiv = colDiv.children[row];
        column -= 1;
        row += 1;
-      cellDiv.style.backgroundColor = "purple";
+      // cellDiv.style.backgroundColor = "purple";
       cellDiv.classList.add("animated");
     }
   }
@@ -100,11 +102,17 @@ function displayWin(row, column){
       let cellDiv = colDiv.children[row];
        column += 1;
        row += 1;
-      cellDiv.style.backgroundColor = "purple";
+      // cellDiv.style.backgroundColor = "purple";
       cellDiv.classList.add("animated");
     }
   }
 }
+
+//Gets the reset button and resets the resetGame
+let resetDiv = document.querySelector('.reset button');
+resetDiv.addEventListener("click", () => {
+  resetGame();
+});
 
 //resets the game to initial state
 function resetGame(){
