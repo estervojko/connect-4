@@ -138,7 +138,6 @@ function displayWin(row, column){
       let cellDiv = colDiv.children[row];
        column += 1;
        row += 1;
-      // cellDiv.style.backgroundColor = "purple";
       cellDiv.classList.add("animated");
     }
   }
@@ -167,12 +166,19 @@ function resetView(){
     cell.classList.remove("animated");
   });
 
+  //resets the view screen
+  let winDiv = document.querySelector(".win-overlay");
+  winDiv.style.display = "none";
+
   //resets the player name entry for both player 1 and 2
   let greetDiv = document.getElementById("greet-person");
-  console.log("test", greetDiv);
-  greetDiv.parentNode.removeChild(greetDiv);
+  if(greetDiv !== null) {
+    greetDiv.parentNode.removeChild(greetDiv);
+  }
   let greetDiv2 = document.getElementById("greet-person2");
-  greetDiv2.parentNode.removeChild(greetDiv2);
+  if(greetDiv2 !== null){
+    greetDiv2.parentNode.removeChild(greetDiv2);
+  }
 
   //reset display of the input box for player 1 and 2
   let inputNameParentDiv = document.querySelector(".input-name");
@@ -184,10 +190,6 @@ function resetView(){
   let inputDiv2 = document.querySelector("#player2value");
   inputDiv2.value = "";
   inputNameParentDiv2.style.display = "block";
-
-  //resets the view screen
-  let winDiv = document.querySelector(".win-overlay");
-  winDiv.style.display = "none";
 }
 
 
@@ -265,22 +267,18 @@ function checkWinner(row, column){
   let checkSecondD = checkSecondDiagonal(row, column);
 
   if( checkH[0] === true){
-    console.log(checkH);
     winner = checkH;
     return;
   }
   else if( checkV[0] === true){
-    console.log(checkV);
     winner = checkV;
     return;
   }
   else if( checkFirstD[0] === true){
-    console.log(checkFirstD);
     winner = checkFirstD;
     return;
   }
   else if( checkSecondD[0] === true){
-    console.log(checkSecondD);
     winner = checkSecondD;
     return;
   }
@@ -301,7 +299,6 @@ function checkHorizontally(row, column){
           return [true, "h", row, column];
         }
       column += 1;
-      console.log(row, column, column-1, column-2, column-3);
     }
     return [false];
   }else{
@@ -320,7 +317,6 @@ function checkVertically(row, column){
           return [true, "v", row, column];
         }
       row += 1;
-      console.log(row-3, row-2, row-1,row, column);
     }
     return [false];
   }else{

@@ -15,7 +15,6 @@ body{
 /* Connect 4 center styling  */
 .game{
   height: 100vh;
-  border: 1px solid pink;
   display: grid;
   grid-template-rows: 20% 60% 20%;
   justify-content: center;
@@ -45,7 +44,6 @@ button{
 
 .player1{
   padding-top: 130px;
-  border: 1px solid orange;
   justify-self: end;
   color: white;
   font-family: 'KoHo', sans-serif;
@@ -62,7 +60,6 @@ button{
 
 .player2{
   padding-top: 130px;
-  border: 1px solid orange;
   justify-self: start;
   color: white;
   font-family: 'KoHo', sans-serif;
@@ -144,26 +141,6 @@ button{
 
 /* Trying some animations I found online  */
 
-@mixin afterBg {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  border-radius: 50%;
-}
-
-&:after {
-  /* @include afterBg; */
-  animation: shockwave 1s .65s ease-out infinite;
-}
-
-&:before {
-  /* @include afterBg; */
-  animation: shockwave 1s .5s ease-out infinite;
-}
-
 @keyframes shockwaveJump {
 0% {
   transform: scale(1);
@@ -182,19 +159,5 @@ button{
 }
 100% {
   transform: scale(1);
-}
-}
-
-@keyframes shockwave {
-0% {
-  transform: scale(1);
-  box-shadow: 0 0 2px rgba(0,0,0,0.15), inset 0 0 1px rgba(0,0,0,0.15);
-}
-95% {
-  box-shadow: 0 0 50px rgba(0,0,0,0), inset 0 0 30px rgba(0,0,0,0);
-}
-100% {
-  transform: scale(2.25);
-
 }
 }
