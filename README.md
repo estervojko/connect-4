@@ -1,3 +1,32 @@
+-----------------------------------------------------------------------------------------------------------------------
+Play the game here: http://great-robin.surge.sh/
+
+Connect 4
+
+Basic description.
+
+The game is played by 2 players, where each player picks a color and they get discs of that color. They insert these discs, one per turn in a grid. The grid has 6 rows and 7 columns. It stands vertically and the players insert the discs from above where the fall to the lowest available space. Players continue to play until one of them wins or the board is full. A player wins when they connect 4 of their pieces either vertically, horizontally, or diagonally.
+
+
+Functional Specifications
+
+-Initially the users see the board on the screen that also displays an option for players to put in their name.
+-The player clicks on a column in the grid and depending on which player it is, a red or blue circle appears
+on the board in the first empty circle
+-A player wins if they connect 4 of their pieces(red or blue) either horizontally, vertically or  diagonally.
+-When a player wins a message is displayed on the board that says which player won.
+-A button 'Reset' resets the game to the initial state.
+-The game ends when a player wins, or the board is full. At that point a message displays who won(if any).
+
+MVP
+
+-As an Minimum Viable Product I plan on implementing what I put down in the functional specifications.
+
+Post-MVP
+-Implementing a drag and drop feature for the discs, and an animation when they fall down the grid.
+
+-----------------------------------------------------------------------------------------------------------------------
+
 Plan for the day - October 25 2018
 
 Where Im at:
@@ -23,33 +52,6 @@ To do:
 correct place.
 
 -----------------------------------------------------------------------------------------------------------------------
-Connect 4
-
-Basic description.
-
-The game is played by 2 players, where each player picks a color and they get discs of that color. They insert these discs, one per turn in a grid. The grid has 6 rows and 7 columns. It stands vertically and the players insert the discs from above where the fall to the lowest available space. Players continue to play until one of them wins or the board is full. A player wins when they connect 4 of their pieces either vertically, horizontally, or diagonally.
-
-
-Functional Specifications
-
--Initially the users see the board on the screen that displays the turn and player's name.
--The game starts when you PRESS start on the screen.
--The player clicks on a column in the grid and depending on which player it is, a red or blue circle appears
-on the board in the first empty circle
--A player wins if they connect 4 of their pieces(red or blue) either horizontally, vertically or  diagonally.
--When a player wins a message is displayed on the board that says which player won.
--A button 'Reset' resets the game to the initial state.
--The game ends when a player wins, or the board is full. At that point a message displays who won(if any).
-
-MVP
-
--As an Minimum Viable Product I plan on implementing what I put down in the functional specifications.
-
-Post-MVP
--Implementing a drag and drop feature for the discs, and an animation when they fall down the grid.
-
-
------------------------------------------------------------------------------------------------------------------------
 
 As a data structure I plan on using an array of arrays for the grid, each sub-array being a row.
 
@@ -61,6 +63,39 @@ Some functions that will be implemented are:
 
 
 -----------------------------------------------------------------------------------------------------------------------
+**Approach**
+
+Interesting problem during this project was figuring out how to check for the win. The program checks if a player won
+every time a move is made. Initially I figured out I needed to break down the problem in smaller chunks, so I wrote down functions for checking vertically, horizontally, and both diagonals. Having a 2 dimensional array as data structure
+for this problem, messing with indexes is fundamental. Below there's a code snipped of checking for one of the diagonals
+and a picture explaining the positioning of the indexes, after we've placed a disk at (i,j), i being the row number, and j the column number.
+
+````
+//checks first diagonal
+function checkFirstDiagonal(row, column){
+  if(board[row][column] !== null){
+    for(let i=0; i<4; i+=1){
+      if( row+3 <= 5 && column-3 >= 0 && row >= 0 && column >= 0 &&
+        board[row][column] === board[row+1][column-1] &&
+        board[row+1][column-1] === board[row+2][column-2] &&
+        board[row+2][column-2] === board[row+3][column-3]){
+            return([true, "fd", row, column]);
+    }
+      row -= 1;
+      column += 1;
+    }
+    return [false];
+  }else{
+    return[false];
+  }
+}
+
+
+
+
+
+
+
 
 Used for test cases:
 
