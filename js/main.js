@@ -103,6 +103,8 @@ function displayWinMessage(){
   }
   winDiv.appendChild(winMsgDiv);
   winDiv.style.display = "block";
+  player1Name = "Blue";
+  player2Name = "Red";
 }
 
 //display
