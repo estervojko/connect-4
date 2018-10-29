@@ -12,14 +12,6 @@ body{
   justify-content: center;
 }
 
-button{
-  display: block;
-  font-family: 'KoHo', sans-serif;
-  font-size: 20px;
-  width: 100px;
-  height: auto;
-}
-
 /* Connect 4 center styling  */
 .game{
   height: 100vh;
@@ -41,6 +33,14 @@ button{
 .reset{
   justify-self: center;
   align-self: center;
+}
+
+button{
+  display: block;
+  font-family: 'KoHo', sans-serif;
+  font-size: 20px;
+  width: 100px;
+  height: auto;
 }
 
 .player1{
@@ -76,6 +76,20 @@ button{
   width: 150px;
   height: 20px;
 }
+/* Styles the legend for player 1 and 2 */
+.legend1{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #526C86;
+}
+
+.legend2{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #EA9674;
+}
 
 /* Styles the container and the winner overlay  */
 .container-overlay{
@@ -83,6 +97,7 @@ button{
 }
 
 .win-overlay{
+  display: none;
   background: rgba(0, 0, 0, 0.5);
   height: 100px;
   width: 100%;
@@ -90,6 +105,7 @@ button{
   position: absolute;
   top: 150px;
   color: #FCBC80;
+  z-index: 1000;
 }
 
 .container{

@@ -1,31 +1,38 @@
-console.log("connected");
-
 //-----------------------------------------------------------------------------
 //View
 
 //checks the players names and greets them
+//Global state player names
+let player1Name = "Blue";
+let player2Name = "Red";
 
 let player1Input = document.querySelector('#player1value')
-console.log(player1Input);
 player1Input.addEventListener("keydown", (e) => {
-  console.log(e.keyCode);
-  if(e.keyCode === 13) {
-    let player1Name = document.querySelector('#player1value').value;
+  player1Name = document.querySelector('#player1value').value;
+  if(e.keyCode === 13 && player1Name !== "") {
     let inputDiv = document.querySelector(".input-name");
     inputDiv.style.display = "none";
     let greetDiv = document.querySelector(".greet");
     let greetDivP = document.createElement("p")
-    greetDivP.innerText = `Hello, ${player1Name}`;
+    greetDivP.setAttribute("id", "greet-person");
+    greetDivP.innerText = `Hello, ${player1Name}!`;
     greetDiv.appendChild(greetDivP);
   }
 });
 
-
-
-
-
-
-
+let player2Input = document.querySelector("#player2value");
+player2Input.addEventListener("keydown", (e) => {
+  player2Name = document.querySelector("#player2value").value;
+  if(e.keyCode === 13 && player2Name !== ""){
+    let inputDiv = document.querySelector(".input-name2");
+    inputDiv.style.display = "none";
+    let greetDiv = document.querySelector(".greet2");
+    let greetDivP = document.createElement("p");
+    greetDivP.innerText = `Hello, ${player2Name}!`;
+    greetDivP.setAttribute("id", "greet-person2");
+    greetDiv.appendChild(greetDivP)
+  }
+})
 
 const column = document.querySelectorAll(".column");
 
@@ -33,15 +40,12 @@ for(let i=0; i<7; i+=1){
   column[i].addEventListener("click", function handler(){
     let colData = column[i].dataset.column;
     let cells = column[i].children;               //selects all children of clicked column
-    console.log(turn);
-
     //Remove event listener if game is finished
     if(winner[0] === true){
       for(let i=0; i<7; i+=1){
         column[i].removeEventListener("click", handler);
         return;
       }
-      console.log("removed");
     }
     if(turn === "red"){
       if( column[i].lastElementChild.style.backgroundColor === ""){
@@ -68,9 +72,7 @@ for(let i=0; i<7; i+=1){
         }
       else{
         for(let i=0; i<cells.length; i += 1){
-          console.log("entered inside for of blue");
           if( cells[i].style.backgroundColor !== ""){
-            console.log("entered inside if of blue");
             cells[i-1].style.backgroundColor = "#526C86"
             makeMove(Number(colData));
             checkWinState();
@@ -86,9 +88,22 @@ for(let i=0; i<7; i+=1){
 function checkWinState(){
   if(winner[0] === true){
     displayWin(winner[2],winner[3]);
+    displayWinMessage();
   }
 }
 
+function displayWinMessage(){
+  let winDiv = document.querySelector(".win-overlay");
+  let winMsgDiv = document.querySelector(".win-message");
+  if(board[winner[2]][winner[3]] === "blue"){
+    winMsgDiv.innerText = `${player1Name} WINS`;
+  }
+  else if(board[winner[2]][winner[3]] === "red"){
+    winMsgDiv.innerText = `${player2Name} WINS`;
+  }
+  winDiv.appendChild(winMsgDiv);
+  winDiv.style.display = "block";
+}
 
 //display
 function displayWin(row, column){
@@ -97,7 +112,6 @@ function displayWin(row, column){
       let colDiv = document.querySelector(".container").children[column];
       let cellDiv = colDiv.children[row];
        column -= 1;
-      // cellDiv.style.backgroundColor = "purple";
       cellDiv.classList.add("animated");
     }
   }
@@ -106,7 +120,6 @@ function displayWin(row, column){
       let colDiv = document.querySelector(".container").children[column];
       let cellDiv = colDiv.children[row];
        row -= 1;
-      // cellDiv.style.backgroundColor = "purple";
       cellDiv.classList.add("animated");
     }
   }
@@ -116,7 +129,6 @@ function displayWin(row, column){
       let cellDiv = colDiv.children[row];
        column -= 1;
        row += 1;
-      // cellDiv.style.backgroundColor = "purple";
       cellDiv.classList.add("animated");
     }
   }
@@ -154,6 +166,28 @@ function resetView(){
     cell.style.backgroundColor = "";
     cell.classList.remove("animated");
   });
+
+  //resets the player name entry for both player 1 and 2
+  let greetDiv = document.getElementById("greet-person");
+  console.log("test", greetDiv);
+  greetDiv.parentNode.removeChild(greetDiv);
+  let greetDiv2 = document.getElementById("greet-person2");
+  greetDiv2.parentNode.removeChild(greetDiv2);
+
+  //reset display of the input box for player 1 and 2
+  let inputNameParentDiv = document.querySelector(".input-name");
+  let inputDiv = document.querySelector("#player1value");
+  inputDiv.value = "";
+  inputNameParentDiv.style.display = "block";
+
+  let inputNameParentDiv2 = document.querySelector(".input-name2");
+  let inputDiv2 = document.querySelector("#player2value");
+  inputDiv2.value = "";
+  inputNameParentDiv2.style.display = "block";
+
+  //resets the view screen
+  let winDiv = document.querySelector(".win-overlay");
+  winDiv.style.display = "none";
 }
 
 
