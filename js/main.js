@@ -3,6 +3,30 @@ console.log("connected");
 //-----------------------------------------------------------------------------
 //View
 
+//checks the players names and greets them
+
+let player1Input = document.querySelector('#player1value')
+console.log(player1Input);
+player1Input.addEventListener("keydown", (e) => {
+  console.log(e.keyCode);
+  if(e.keyCode === 13) {
+    let player1Name = document.querySelector('#player1value').value;
+    let inputDiv = document.querySelector(".input-name");
+    inputDiv.style.display = "none";
+    let greetDiv = document.querySelector(".greet");
+    let greetDivP = document.createElement("p")
+    greetDivP.innerText = `Hello, ${player1Name}`;
+    greetDiv.appendChild(greetDivP);
+  }
+});
+
+
+
+
+
+
+
+
 const column = document.querySelectorAll(".column");
 
 for(let i=0; i<7; i+=1){
