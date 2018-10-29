@@ -70,7 +70,9 @@ every time a move is made. Initially I figured out I needed to break down the pr
 for this problem, messing with indexes is fundamental. Below there's a code snipped of checking for one of the diagonals
 and a picture explaining the positioning of the indexes, after we've placed a disk at (i,j), i being the row number, and j the column number.
 
-````
+![alt text](https://github.com/estervojko/connect-4/blob/master/images/checkDiagonal.jpg?raw=true)
+
+```javascript
 //checks first diagonal
 function checkFirstDiagonal(row, column){
   if(board[row][column] !== null){
@@ -89,15 +91,10 @@ function checkFirstDiagonal(row, column){
     return[false];
   }
 }
+```
 
 
-
-
-
-
-
-
-Used for test cases:
+**Used for test cases:**
 
 //checkHorizontally
 board[5][3] = "red";
