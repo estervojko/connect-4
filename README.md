@@ -1,14 +1,16 @@
 -----------------------------------------------------------------------------------------------------------------------
-Play the game here: http://great-robin.surge.sh/
+Play the game here:
 
-Connect 4
+http://great-robin.surge.sh/
 
-Basic description.
+##Connect 4
+
+####Basic description.
 
 The game is played by 2 players, where each player picks a color and they get discs of that color. They insert these discs, one per turn in a grid. The grid has 6 rows and 7 columns. It stands vertically and the players insert the discs from above where the fall to the lowest available space. Players continue to play until one of them wins or the board is full. A player wins when they connect 4 of their pieces either vertically, horizontally, or diagonally.
 
 
-Functional Specifications
+####Functional Specifications
 
 -Initially the users see the board on the screen that also displays an option for players to put in their name.
 -The player clicks on a column in the grid and depending on which player it is, a red or blue circle appears
@@ -18,16 +20,16 @@ on the board in the first empty circle
 -A button 'Reset' resets the game to the initial state.
 -The game ends when a player wins, or the board is full. At that point a message displays who won(if any).
 
-MVP
+####MVP
 
 -As an Minimum Viable Product I plan on implementing what I put down in the functional specifications.
 
-Post-MVP
+####Post-MVP
 -Implementing a drag and drop feature for the discs, and an animation when they fall down the grid.
 
 -----------------------------------------------------------------------------------------------------------------------
 
-Plan for the day - October 25 2018
+**Plan for the day - October 25 2018**
 
 Where Im at:
 - functionality fully implemented with UI
@@ -38,7 +40,7 @@ To do:
 
 
 
-Plan for the day - October 24 2018
+**Plan for the day - October 24 2018**
 
 Where Im at:
 - almost finished the logic of the game, and it works correctly with the tests I run.
@@ -52,6 +54,7 @@ To do:
 correct place.
 
 -----------------------------------------------------------------------------------------------------------------------
+####Data Structures
 
 As a data structure I plan on using an array of arrays for the grid, each sub-array being a row.
 
@@ -63,7 +66,7 @@ Some functions that will be implemented are:
 
 
 -----------------------------------------------------------------------------------------------------------------------
-**Approach**
+####Approach
 
 Interesting problem during this project was figuring out how to check for the win. The program checks if a player won
 every time a move is made. Initially I figured out I needed to break down the problem in smaller chunks, so I wrote down functions for checking vertically, horizontally, and both diagonals. Having a 2 dimensional array as data structure
